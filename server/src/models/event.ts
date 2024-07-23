@@ -6,4 +6,5 @@ export interface Event extends RowDataPacket{
     message:string;
     user_id:number;
     transaction_id:number;
+    type:string;
 }
