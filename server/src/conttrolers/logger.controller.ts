@@ -22,16 +22,16 @@ export class LoggerController{
     }
     
         static async insert(req:any, res:any){
-        const sql="INSERT INTO event (timestamp, message, user_id, transaction_id) VALUES ( ?, ?, ?, ?)";
-        await pool.query(sql, [req.body.timestamp, req.body.message, req.body.user_id, req.body.transaction_id]);
+        const sql="INSERT INTO event (timestamp, type, message, user_id, transaction_id) VALUES ( ?, ?, ?, ?, ?)";
+        await pool.query(sql, [req.body.timestamp, req.body.type, req.body.message, req.body.user_id, req.body.transaction_id]);
         res.status(201).json({
             "success":true
         })
     }
 
         static async update(req:any, res:any){
-        const sql="UPDATE event SET timestamp=?, message=?, user_id=?, transaction_id=? WHERE id=?";
-        await pool.query(sql, [req.body.timestamp, req.body.message, req.body.user_id, req.body.transaction_id, req.body.id]);
+        const sql="UPDATE event SET timestamp=?, type=?, message=?, user_id=?, transaction_id=? WHERE id=?";
+        await pool.query(sql, [req.body.timestamp, req.body.type, req.body.message, req.body.user_id, req.body.transaction_id, req.body.id]);
         res.json({
             "success":true
         })

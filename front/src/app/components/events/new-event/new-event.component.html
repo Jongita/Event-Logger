@@ -1,1 +1,39 @@
-<p>new-event works!</p>
+<div class="card mt-3">
+    <div class="card-header">Add new event log</div>
+    <div class="card-body">
+        <form id="ngForm" (ngSubmit)="eventSubmit(f)" #f="ngForm">
+            <h3>Event information</h3>
+            <div class="mb-3">
+                <label for="" class="form-label">Timestamp</label>
+                <input type="text" id="timestamp" class="form-control" name="timestamp" [(ngModel)]="currentTimestamp" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Type</label>
+                <input type="text" class="form-control" name="type" value="" ngModel required pattern="[a-zA-Z ]*" #inputtype="ngModel">
+                <div *ngIf="!inputtype.valid && inputtype.touched">Laukelis privalomas</div>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Message</label>
+                <input type="text" class="form-control" name="message" value="" ngModel required pattern="[a-zA-Z ]*" [class.is-invalid]="!inputmessage.valid && inputmessage.touched" maxlength="256" #inputmessage="ngModel">
+                <div class="helper-block " *ngIf="!inputmessage.valid && inputmessage.touched">
+                    message is required
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">User ID</label>
+                <input type="number" class="form-control" name="user_id" value="" ngModel [class.is-invalid]="!inputuser_id.valid && inputuser_id.touched" required #inputuser_id="ngModel" pattern="[0-9]*">
+                <div class="helper-block" *ngIf="!inputuser_id.valid && inputuser_id.touched">
+                    field is required, symbols are only numbers
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Transaction ID</label>
+                <input type="number" class="form-control" name="transaction_id" value="" ngModel [class.is-invalid]="!inputtransaction_id && inputtransaction_id" required pattern="[0-9]*" #inputtransaction_id="ngModel">
+                <div class="helper-block" *ngIf="!inputtransaction_id.valid && inputtransaction_id.touched">
+                    field is required, symbols are only numbers
+                </div>
+            </div>
+            <button class="btn btn-success" type="submit" form="ngForm" [disabled]="!f.valid">Pridėti</button>
+        </form>
+    </div>
+</div>
