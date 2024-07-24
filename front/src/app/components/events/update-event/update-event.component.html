@@ -1,1 +1,38 @@
-<p>update-event works!</p>
+<div class="card mt-3">
+    <div class="card-header">Edit event log</div>
+    <div class="card-body">
+        <form id="ngForm" (ngSubmit)="eventSubmit(f)" #f="ngForm">
+
+            <div class="mb-3">
+                <label for="" class="form-label">Timestamp</label>
+                <input type="date" class="form-control" name="timestamp" ngModel [(ngModel)]="timestamp">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Type</label>
+                <!-- <select class="form-control" name="course_id" [(ngModel)]="course_id">
+                <option *ngFor="let course of courses; let i=index" [value]="course.id">{{ course.name }}</option>
+            </select> -->
+                <select class="form-control" name="type" ngModel [(ngModel)]="type">
+                    <option disabled selected>Select type</option>
+                    <option value="INFO">INFO</option>
+                    <option value="DEBUG">DEBUG</option>
+                    <option value="ERROR">ERROR</option>
+                    <option value="WARNING">WARNING</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Message</label>
+                <input type="text" class=" form-control" name="message" ngModel [(ngModel)]="message">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">USER ID</label>
+                <input type="number" class="form-control" name="user_id" ngModel [(ngModel)]="user_id">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Transaction ID</label>
+                <input type="number" class="form-control" name="transaction_id" ngModel [(ngModel)]="transaction_id">
+            </div>
+            <button class="btn btn-success" type="submit">Atnaujinti</button>
+        </form>
+    </div>
+</div>
