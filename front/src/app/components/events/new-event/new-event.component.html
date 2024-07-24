@@ -8,8 +8,14 @@
                 <input type="text" id="timestamp" class="form-control" name="timestamp" [(ngModel)]="currentTimestamp" readonly>
             </div>
             <div class="mb-3">
-                <label for="" class="form-label">Type</label>
-                <input type="text" class="form-control" name="type" value="" ngModel required pattern="[a-zA-Z ]*" #inputtype="ngModel">
+                <label for="type" class="form-label">Type</label>
+                <select class="form-control" name="type" ngModel required #inputtype="ngModel">
+                    <option value="" disabled selected>Select type</option>
+                    <option value="INFO">INFO</option>
+                    <option value="DEBUG">DEBUG</option>
+                    <option value="ERROR">ERROR</option>
+                    <option value="WARNING">WARNING</option>
+                </select>
                 <div *ngIf="!inputtype.valid && inputtype.touched">Laukelis privalomas</div>
             </div>
             <div class="mb-3">
