@@ -25,4 +25,11 @@ export class ListEventsComponent {
   constructor (private eventsService:EventsService){
     this.loadEvents();
   }
+
+  public deleteEvent(id:number){
+    this.eventsService.deleteEvent(id).subscribe((data)=>{
+      this.loadEvents();
+    })
+  }
+
 }

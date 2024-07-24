@@ -3,7 +3,8 @@ import { Event } from "../models/event";
 
 export class LoggerController{
         static async getAll( req:any, res:any){
-        const sql="SELECT * FROM event";
+        // const sql="SELECT * FROM event";
+        const sql="SELECT e.id, DATE_FORMAT(e.timestamp, '%Y-%m-%d %H:%i:%s') AS timestamp, e.message, e.user_id, e.transaction_id, e.type FROM event e;";
         const [result]=await pool.query<Event[]>(sql);
         res.json(result);
     }
@@ -38,7 +39,7 @@ export class LoggerController{
     }
         static async delete(req:any, res:any){
         const sql="DELETE FROM event WHERE id=?";
-        await pool.query(sql, [req.body.id]);
+        await pool.query(sql, [req.params.id]);
         res.json({
             "success":true
         })
